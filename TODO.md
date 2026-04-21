@@ -1,0 +1,1 @@
+# Footer Width Fix - ProductPage\n\n1. [ ] Wrap ContactUs in product-footer div in ProductPage.js\n2. [ ] Update ProductPage.css for full-width footer\n3. [ ] Update ContactUs.css for responsive full width\n4. [ ] Test with npm start on /product\n5. [ ] Mark complete
