@@ -5,14 +5,7 @@ import { FaFacebook } from "react-icons/fa";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-const testLogin = async () => {
-  try {
-    await signInWithEmailAndPassword(auth, "test@test.com", "123456");
-    console.log("Login success");
-  } catch (err) {
-    console.log(err.message);
-  }
-};
+
 
 
 
