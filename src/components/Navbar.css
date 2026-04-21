@@ -250,3 +250,35 @@
   border-top: 1px solid #ccc;
   padding-top: 10px;
 }
+/* =======================
+   MAP MODAL - MOBILE FIX
+   ======================= */
+@media (max-width: 768px) {
+  .map-content {
+    width: 95%;
+    height: 80vh;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .map-content iframe,
+  .map-content > div {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .close-btn {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

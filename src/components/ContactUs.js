@@ -2,8 +2,8 @@ import React from "react";
 import "./ContactUs.css";
 import { FaFacebook } from "react-icons/fa";
 
-import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+
+
 
 
 
