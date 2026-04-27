@@ -34,7 +34,7 @@ const categories = [
   },
 ];
 
-const MainLayout = ({ products }) => {
+const MainLayout = ({ products = [] }) => {
   const { setCartItems } = useCart();
 
   const addToCart = (product) => {
@@ -62,20 +62,11 @@ const MainLayout = ({ products }) => {
     });
   };
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
-  const handleCategoryClick = (category) => {
-    if (selectedCategory?.title === category.title) {
-      setSelectedCategory(null);
-    } else {
-      setSelectedCategory(category);
-      setSelectedProduct(null);
-    }
-  };
 
   const handleProductClick = (item) => {
     setSelectedProduct(item);
+
     setTimeout(() => {
       document
         .getElementById("product-detail-view")
@@ -111,9 +102,7 @@ const MainLayout = ({ products }) => {
           />
 
           <div style={{ padding: "20px" }}>
-            <h2 style={{ fontSize: "24px" }}>
-              {selectedProduct.name || selectedProduct.title}
-            </h2>
+            <h2>{selectedProduct.name || selectedProduct.title}</h2>
 
             <p style={{ fontSize: "22px", color: "orange", fontWeight: "bold" }}>
               Rs. {selectedProduct.price}
@@ -132,8 +121,8 @@ const MainLayout = ({ products }) => {
                 padding: "12px",
                 borderRadius: "8px",
                 border: "none",
-                fontSize: "16px",
                 cursor: "pointer",
+                width: "100%",
               }}
             >
               🛒 Add to Cart
@@ -148,8 +137,8 @@ const MainLayout = ({ products }) => {
                 padding: "12px",
                 borderRadius: "8px",
                 border: "none",
-                fontSize: "16px",
                 cursor: "pointer",
+                width: "100%",
               }}
             >
               ✕ Close
@@ -161,47 +150,46 @@ const MainLayout = ({ products }) => {
       {/* PRODUCTS */}
       <div className="product-page">
         <div className="product-grid">
-          {products &&
-            products.map((item) => (
-              <div
-                key={item.id}
-                className="product-card"
-                onClick={() => handleProductClick(item)}
+          {products.map((item) => (
+            <div
+              key={item.id}
+              className="product-card"
+              onClick={() => handleProductClick(item)}
+            >
+              <img
+                src={item.thumbnail || item.image}
+                alt={item.title || item.name}
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "contain",
+                  marginTop: "10px",
+                }}
+              />
+
+              <h3>{item.title || item.name}</h3>
+              <p className="price">Rs. {item.price}</p>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  addToCart(item);
+                }}
+                style={{
+                  marginTop: "10px",
+                  background: "orange",
+                  color: "#fff",
+                  padding: "10px",
+                  border: "none",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                  width: "100%",
+                }}
               >
-                <img
-                  src={item.thumbnail || item.image}
-                  alt={item.title || item.name}
-                  style={{
-                    width: "100%",
-                    height: "300px",
-                    objectFit: "contain",
-                    marginTop: "10px",
-                  }}
-                />
-
-                <h4>{item.title || item.name}</h4>
-                <p className="price">Rs. {item.price}</p>
-
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    addToCart(item);
-                  }}
-                  style={{
-                    marginTop: "10px",
-                    background: "orange",
-                    color: "#fff",
-                    padding: "10px",
-                    border: "none",
-                    borderRadius: "6px",
-                    cursor: "pointer",
-                    width: "100%",
-                  }}
-                >
-                  🛒 Add to Cart
-                </button>
-              </div>
-            ))}
+                🛒 Add to Cart
+              </button>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -229,6 +217,7 @@ const MainLayout = ({ products }) => {
         ))}
       </div>
 
+      {/* CONTACT */}
       <ContactUs />
 
     </div>
